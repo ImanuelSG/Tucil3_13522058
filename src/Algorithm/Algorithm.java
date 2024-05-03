@@ -84,7 +84,8 @@ public class Algorithm {
         Map<String, Integer> visitedDouble = new HashMap<>();
 
         int counter = 0;
-   
+        int doubleCounter = 0;
+
         queue.add(root);
         while (!queue.isEmpty()) {
             // get the current node
@@ -101,11 +102,13 @@ public class Algorithm {
                     (current.getParent() != null) ? current.getParent().getValue() : "");
             // if already goal, return the path
             if (current.getValue().equals(endWord)) {
+                System.out.println(doubleCounter);
                 return new Pair<>(getPaths(), counter);
             }
             // get the neighbors of the current node (basically expanding the node)
             List<String> neighbors = maps.get(current.getValue());
-            // iterate ke semua tetangga
+            // iterate ke semua tetangga, kalau misalkan ternyata tetangga udah abis, maka
+            // ganti node.
             if (neighbors == null) {
                 continue;
             }
@@ -113,11 +116,14 @@ public class Algorithm {
                 // Only add to the queue if the node hasnt been visited (Hanya masukkan ke
                 // simpul hidup bila belom pernah ekspan)
                 if (visitedMap.get(neighbor) == null) {
+
                     // Basically we prune the same node that are already too expensive
                     if (visitedDouble.get(neighbor) != null
-                            && visitedDouble.get(neighbor) < evaluatePrice(current.getDepth() + 1, neighbor)) {
+                            && visitedDouble.get(neighbor) <= evaluatePrice(current.getDepth() + 1, neighbor)) {
                         continue;
                     }
+
+                    
                     Node newNode = new Node(current, neighbor, evaluatePrice(current.getDepth() + 1, neighbor),
                             current.getDepth() + 1);
                     queue.add(newNode);

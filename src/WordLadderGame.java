@@ -1,3 +1,5 @@
+
+
 import java.util.Scanner;
 import Algorithm.Algorithm;
 import Mapper.TextParser;
