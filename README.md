@@ -1,89 +1,103 @@
-# Project Name
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+# Tucil 3 IF-2211 Strategi Algorima : Word Ladder Solver Using UCS, Greedy Best First Search and A\* Algorithm
+
+This project was made in order to acomplish the 3rd small task of Alorithm Strategy Course in Institute technology of Bandung. This project tries to solve the famous WordLadder game using 3 diffrent algorithms. I then tried to compare each of the algorithm to see which algorithm is based used for this problem.
 
 ## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Screenshots](#screenshots)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
+
+- [General Information](#general-information)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 <!-- * [License](#license) -->
 
-
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
+A word ladder game is a puzzle where players transform one word into another by changing one letter at a time, with each intermediate word also being valid. The goal is to find the shortest path from the starting word to the target word using a series of valid transformations. The dictionary used in this project can be found here https://docs.oracle.com/javase/tutorial/collections/interfaces/examples/dictionary.txt
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
 
+- Java - version 1.8.0_381
 
 ## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
 
+- CLI Solver
+- GUI Solver
+- Detailed Output Steps Visualization
 
 ## Screenshots
+
 ![Example screenshot](./img/screenshot.png)
+
 <!-- If you have screenshots you'd like to share, include them here. -->
 
-
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
 
-Proceed to describe how to install / setup one's local environment / get started with the project.
+In order to use this project, make sure to have Java installed on your computer. You can then follow these steps
 
+#### 1. Clone This Repository
 
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
+```bash
+git clone https://github.com/ImanuelSG/Tucil3_13522058.git
+```
 
-`write-your-code-here`
+#### 2. Navigate towards the main directory
 
+```bash
+cd Tucil3_13522058
+```
+
+#### 3. Generate the map of your dictionary
+
+If you want to use your own dictionary, please run this command below before moving on. Else just ignore this step
+
+```bash
+./generateMap.bat for Windows or ./generateMap.sh for Linux
+```
+
+#### 4. Run the GUI/CLI starter using.bat / .sh
+
+If you want to use the CLI, use this command
+
+```bash
+./runCLI.bat for Windows or ./runCLI.sh for Linux
+```
+
+If you want to use the GUI, use this command
+
+```bash
+./runGUI.bat for Windows or ./runGUI.sh for Linux
+```
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
 
+| Poin                                                                                                                                    | Ya      | Tidak |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----- |
+| 1. Program berhasil dijalankan.                                                                                                         | &#9745; |       |
+| 2. Program dapat menemukan rangkaian kata dari start word ke end word sesuai aturan permainan dengan algoritma UCS                      | &#9745; |       |
+| 3. Solusi yang diberikan pada algoritma UCS optimal                                                                                     | &#9745; |       |
+| 4. Program dapat menemukan rangkaian kata dari start word ke end word sesuai aturan permainan dengan algoritma Greedy Best First Search | &#9745; |       |
+| 5. Program dapat menemukan rangkaian kata dari start word ke end word sesuai aturan permainan dengan algoritma A\*                      | &#9745; |       |
+| 6. Solusi yang diberikan pada algoritma A\* optimal                                                                                     | &#9745; |       |
+| 7. [Bonus]: Program memiliki tampilan GUI                                                                                               | &#9745; |       |
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
 
+Because this project is speedrun in one week, there are a lot of things to be improved on.
 Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
 
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
-
-## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
-
+- Use better OOP Design Principles in order ot make more maintainable and sustainable code
+- Search for better data structures, pruning strategies, and other performance related things to improve the execution time of this program.
+- Explore better GUI features and add more functionality to the GUI
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
 
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+You cant contact me via
+| Name | NIM | Contact |Github
+| ------------------------- | -------- | --------------------------- |------
+| Imanuel Sebastian Girsang | 13522058 | 13522058@std.stei.itb.ac.id |[ImanuelSG](https:/github.com/ImanuelSG)
