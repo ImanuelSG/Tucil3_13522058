@@ -35,7 +35,7 @@ public class Stress {
     public static void main(String[] args) {
         try {
             List<String> words = readWordsFromFile("words_alpha.txt");
-            Map<String, List<String>> data = TextParser.LoadMap("output.txt");
+            Map<String, List<String>> data = TextParser.loadMap("output.txt");
 
             // Create a thread pool to handle multiple tasks concurrently
             ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());

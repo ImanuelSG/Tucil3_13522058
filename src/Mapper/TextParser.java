@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class TextParser {
-    public static Map<String, List<String>> LoadMap(String filename) {
+    public static Map<String, List<String>> loadMap(String filename) {
         Map<String, List<String>> data = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -26,5 +26,24 @@ public class TextParser {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public static Set<String> loadSet(String filename) {
+        Set<String> data = new HashSet<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                data.add(line.trim());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+    public static boolean isValidWord(String word, Set<String> validWords) {
+        return validWords.contains(word);
     }
 }

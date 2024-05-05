@@ -10,11 +10,13 @@ import javafx.util.Pair;
 
 public class Algorithm {
 
-    private String methodType;
-    private String startWord;
-    private String endWord;
-    private Map<String, String> visitedMap;
+    private String methodType;// Untuk nyimpen metode yang dipake
+    private String startWord;// Untuk nyimpen kata awal
+    private String endWord;// Untuk nyimpen kata akhir
+    private Map<String, String> visitedMap;// Biar tidak terjadi cycle, disimpan semua visitedNode dan siapa parentnya,
+                                           // Parent dari kata pertama adalah "".
 
+    // Constructor, yang membedakan UCS,GBF,dan A* adalah cara menghitung cost
     public Algorithm(String methodType, String startWord, String endWord) {
         this.methodType = methodType;
         this.startWord = startWord;
@@ -22,9 +24,13 @@ public class Algorithm {
         this.visitedMap = new HashMap<>();
     }
 
+    // Untuk mendapatkan path dari startWord ke endWord (dengan visitedMap)
+    // basically reverse engineering :)
     public ArrayList<String> getPaths() {
         ArrayList<String> path = new ArrayList<>();
         String current = endWord;
+
+        // Dicari dari kata terakhir ke kata pertama (ditandai dengan parent = "")
         while (current != "") {
             path.add(current);
             current = visitedMap.get(current);
@@ -32,6 +38,7 @@ public class Algorithm {
         return Algorithm.reverseList(path);
     }
 
+    // Method untuk membalikkan list
     public static ArrayList<String> reverseList(ArrayList<String> list) {
         ArrayList<String> reversedList = new ArrayList<>();
         for (int i = list.size() - 1; i >= 0; i--) {
@@ -41,7 +48,7 @@ public class Algorithm {
     }
 
     // Method to evaluate heuristic using Hamming distance (counting character
-    // differences)
+    // differences), semkain kecil semakin baik.
     public int evaluateHeuristic(String thisValue, String goalValue) {
         int counter = 0;
         // Ensure the lengths are the same
@@ -57,13 +64,17 @@ public class Algorithm {
         return counter;
     }
 
-    // Method to evaluate the A* cost: g(n) + h(n)
+    // Method to evaluate the A* cost: g(n) + h(n), level adalah depth dari node
+    // yang dievaluasi.
     public int evaluateAStar(String currentWord, int level, String goalWord) {
 
         return level + evaluateHeuristic(currentWord, goalWord); // A* evaluation
     }
 
-    // Decide the used cost based on the method
+    // Method untuk mengevaluasi cost dari node, tergantung dari metode yang dipakai
+    // Kalau UCS akan mengembalik depthnya,
+    // Kalau GBFS akan mengembalik heuristicnya,
+    // Kalau A* akan mengembalik g(n) + h(n)
     public int evaluatePrice(int level, String currentWord) {
         if (this.methodType.equals("UCS")) {
             return level;
@@ -76,54 +87,69 @@ public class Algorithm {
         }
     }
 
+    // Method untuk mengevaluasi path dari startWord ke endWord
+    // Parameter maps merupakan mapping antara kata dengan tetangganya (kata valid
+    // yang bisa dicapai dengan menggani salah satu huruf)
     public Pair<ArrayList<String>, Integer> Evaluate(Map<String, List<String>> maps) {
 
+        // Priority queue untuk menyimpan node yang akan diekspan, compareByCost
+        // membandingkan cost dari node
         PriorityQueue<Node> queue = new PriorityQueue<>(Node.compareByCost());
         Node root = new Node(null, startWord, evaluatePrice(0, startWord), 0);
 
+        // visitedDouble untuk menyimpan node yang sudah pernah diekspan dan harganya.
+        // Ini untuk memprune node yang sudah terlalu mahal untuk tidak dimasukkan ke
+        // queue
         Map<String, Integer> visitedDouble = new HashMap<>();
 
+        // Ini untuk tahu berapa note visited
         int counter = 0;
-        int doubleCounter = 0;
 
         queue.add(root);
+
+        // Selama queue belum penuh maka lanjut terus
         while (!queue.isEmpty()) {
-            // get the current node
+
             Node current = queue.poll();
 
-            // increment the counter
             counter++;
-            // prevent revisiting the same node
+
+            // Kalau sudah pernah di ekspan, maka skip
             if (visitedMap.get(current.getValue()) != null) {
                 continue;
             }
-            // prevent null accsess on parent
+
+            // Jika belum, maka masukkan ke visitedMap
             visitedMap.put(current.getValue(),
                     (current.getParent() != null) ? current.getParent().getValue() : "");
-            // if already goal, return the path
+
+            // Jika sudah sampai ke endWord, maka return path dan jumlah node yang
+            // dikunjungi
             if (current.getValue().equals(endWord)) {
-                System.out.println(doubleCounter);
+
                 return new Pair<>(getPaths(), counter);
             }
-            // get the neighbors of the current node (basically expanding the node)
+
+            // Ambil semua tetangga dari node yang sedang diekspan
             List<String> neighbors = maps.get(current.getValue());
-            // iterate ke semua tetangga, kalau misalkan ternyata tetangga udah abis, maka
-            // ganti node.
+            // Jika tidak ada tetangga, maka skip
             if (neighbors == null) {
                 continue;
             }
+
+            // Iterasi setiap neighbor
             for (String neighbor : neighbors) {
-                // Only add to the queue if the node hasnt been visited (Hanya masukkan ke
-                // simpul hidup bila belom pernah ekspan)
+
+                // Hanya consider yang belum pernah di ekspan
                 if (visitedMap.get(neighbor) == null) {
 
-                    // Basically we prune the same node that are already too expensive
+                    // Kalau sudah pernah dimasukkan ke queue namun cost ini lebih mahal, maka
+                    // continue (menghindari double expanding)
                     if (visitedDouble.get(neighbor) != null
                             && visitedDouble.get(neighbor) <= evaluatePrice(current.getDepth() + 1, neighbor)) {
                         continue;
                     }
 
-                    
                     Node newNode = new Node(current, neighbor, evaluatePrice(current.getDepth() + 1, neighbor),
                             current.getDepth() + 1);
                     queue.add(newNode);
@@ -135,6 +161,9 @@ public class Algorithm {
             }
 
         }
+
+        // Jika tidak ada path yang ditemukan, maka return empty path dan jumlah node
+        // yang dikunjungi
         System.out.println("No path found");
         return new Pair<>(new ArrayList<>(), counter);
     }
