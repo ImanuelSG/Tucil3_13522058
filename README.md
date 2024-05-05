@@ -1,6 +1,6 @@
 # Tucil 3 IF-2211 Strategi Algorima : Word Ladder Solver Using UCS, Greedy Best First Search and A\* Algorithm
 
-This project was made in order to acomplish the 3rd small task of Alorithm Strategy Course in Institute technology of Bandung. This project tries to solve the famous WordLadder game using 3 diffrent algorithms. I then tried to compare each of the algorithm to see which algorithm is based used for this problem.
+This project was created to fulfill the third mini task for the Algorithm Strategy Course at the Institute of Technology, Bandung. The project aims to solve the popular Word Ladder game using three different algorithms, then compare them to determine which is best suited for this problem.
 
 ## Table of Contents
 

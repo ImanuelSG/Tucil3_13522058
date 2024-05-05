@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -116,7 +118,7 @@ public class WordLadderGameGUI {
         // Solver method dropdown with label
         gbc.gridx = 0; // First column
         gbc.gridy = countRow; // Fourth row
-        JLabel solverMethodLabel = new JLabel("Algorithm:");
+        JLabel solverMethodLabel = new JLabel("Algorithm: ");
         solverMethodLabel.setFont(inputFont); // Set font for the label
         solverMethodLabel.setForeground(Color.decode(colorPalette[5])); // Set label color
         mainPanel.add(solverMethodLabel, gbc);
@@ -232,7 +234,7 @@ public class WordLadderGameGUI {
 
                 // Show the results in a new window
                 showResults(startWord, endWord, timeTaken, result.getValue(), result.getKey().size(),
-                        result.getKey(), memoryUsed);
+                        result.getKey(), memoryUsed, solverMethod);
             }
         });
 
@@ -241,7 +243,7 @@ public class WordLadderGameGUI {
     }
 
     public static void showResults(String startWord, String endWord, long timeTaken, int visitedNodes, int pathLength,
-            ArrayList<String> path, long memoryUsed) {
+            ArrayList<String> path, long memoryUsed, String method) {
         JFrame resultFrame = new JFrame("WordLadder Results");
         resultFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         resultFrame.setSize(900, 900);
@@ -310,6 +312,25 @@ public class WordLadderGameGUI {
 
         currentRow++;
         gbc.gridy = currentRow;
+        summaryPanel.add(createStyledLabel("Algorithm: " + method, summaryFont), gbc);
+
+        Font pathSummaryFont = new Font("Montserrat", Font.BOLD, 14);
+
+        currentRow++;
+        gbc.gridy = currentRow;
+        JTextArea textArea = new JTextArea("Summary Path: " + path, (path.size() + 1) / 10, 50);
+        textArea.setFont(pathSummaryFont);
+        textArea.setForeground(Color.decode(colorPalette[5]));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true); // Wraps at word boundaries
+        textArea.setEditable(false); // Makes it non-editable
+        textArea.setBackground(Color.decode(colorPalette[2]));
+        textArea.setBorder(new EmptyBorder(10, 10, 10, 10)); // Padding
+
+        summaryPanel.add(new JScrollPane(textArea), gbc);
+
+        currentRow++;
+        gbc.gridy = currentRow;
 
         Icon imageIcon;
         if (path != null && !path.isEmpty()) {
@@ -372,14 +393,14 @@ public class WordLadderGameGUI {
             pathsPanel.add(noSolutionLabel);
         }
 
-        JScrollPane scrollPane = new JScrollPane(pathsPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        // Set consistent scroll pane background
+        mainPanel.add(pathsPanel); // Add scroll pane to the main panel
+
+        JScrollPane scrollPane = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        // Set consistent scroll pane background
 
-        mainPanel.add(scrollPane); // Add scroll pane to the main panel
-
-        resultFrame.add(mainPanel);
+        resultFrame.add(scrollPane);
         resultFrame.setVisible(true); // Show the results frame
     }
 
