@@ -112,14 +112,13 @@ public class Algorithm {
 
             Node current = queue.poll();
 
-            counter++;
-
             // Kalau sudah pernah di ekspan, maka skip
             if (visitedMap.get(current.getValue()) != null) {
                 continue;
             }
 
-            // Jika belum, maka masukkan ke visitedMap
+            counter++;
+
             visitedMap.put(current.getValue(),
                     (current.getParent() != null) ? current.getParent().getValue() : "");
 
@@ -129,6 +128,8 @@ public class Algorithm {
 
                 return new Pair<>(getPaths(), counter);
             }
+
+            // masukkan ke visitedMap
 
             // Ambil semua tetangga dari node yang sedang diekspan
             List<String> neighbors = maps.get(current.getValue());

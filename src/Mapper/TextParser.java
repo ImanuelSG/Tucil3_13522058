@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class TextParser {
+    // Load Map
     public static Map<String, List<String>> loadMap(String filename) {
         Map<String, List<String>> data = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -28,6 +29,7 @@ public class TextParser {
         return data;
     }
 
+    // Load Valid Words
     public static Set<String> loadSet(String filename) {
         Set<String> data = new HashSet<>();
 

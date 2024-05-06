@@ -1,15 +1,12 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 import java.awt.event.*;
-
 import java.sql.Time;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
-
 import javafx.util.Pair;
 import Algorithm.Algorithm;
 import Mapper.TextParser;
@@ -21,7 +18,6 @@ public class WordLadderGameGUI {
     private static String[] colorPalette = { "#00C9A7", "#00AFA6", "#00949C", "#017A8B", "#266074", "#FCFCFC" };
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 
@@ -318,7 +314,7 @@ public class WordLadderGameGUI {
 
         currentRow++;
         gbc.gridy = currentRow;
-        JTextArea textArea = new JTextArea("Summary Path: " + path, (path.size() + 1) / 10, 50);
+        JTextArea textArea = new JTextArea("Summary Path: " + path, (path.size() + 5) / 10, 50);
         textArea.setFont(pathSummaryFont);
         textArea.setForeground(Color.decode(colorPalette[5]));
         textArea.setLineWrap(true);

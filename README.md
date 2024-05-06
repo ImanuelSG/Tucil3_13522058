@@ -32,7 +32,20 @@ A word ladder game is a puzzle where players transform one word into another by 
 
 ## Screenshots
 
-![Example screenshot](./img/screenshot.png)
+### Example 1
+
+![Example screenshot](./test/astar.png)
+![Example screenshot](./test/tc6/a6.png)
+
+### Example 2
+
+![Example screenshot](./test/atom.png)
+![Example screenshot](./test/tc2/a2.png)
+
+### Example 3
+
+![Example screenshot](./test/nosol.png)
+![Example screenshot](./test/tc1/a1.png)
 
 <!-- If you have screenshots you'd like to share, include them here. -->
 
