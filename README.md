@@ -9,10 +9,8 @@ This project was created to fulfill the third mini task for the Algorithm Strate
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
-- [Usage](#usage)
 - [Project Status](#project-status)
 - [Room for Improvement](#room-for-improvement)
-- [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
 <!-- * [License](#license) -->
 
@@ -67,7 +65,7 @@ cd Tucil3_13522058
 
 #### 3. Generate the map of your dictionary
 
-If you want to use your own dictionary, please run this command below before moving on. Else just ignore this step
+If you want to use your own dictionary, add the txt file on the dictionary folder with the name words.txt. After that, run this command before moving on. Else just ignore this step
 
 ```bash
 ./generateMap.bat for Windows or ./generateMap.sh for Linux
