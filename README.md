@@ -49,7 +49,13 @@ A word ladder game is a puzzle where players transform one word into another by 
 
 ## Setup
 
-In order to use this project, make sure to have Java and JavaFX installed on your computer. You can then follow these steps
+In order to use this project, make sure to have Java installed on your computer. For linux users, please use
+
+```bash
+sudo apt-get install default-jdk
+```
+
+You can then follow these steps
 
 #### 1. Clone This Repository
 
