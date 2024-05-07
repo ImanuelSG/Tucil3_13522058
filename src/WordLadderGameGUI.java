@@ -7,9 +7,10 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
-import javafx.util.Pair;
 import Algorithm.Algorithm;
 import Mapper.TextParser;
+
+import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class WordLadderGameGUI {
@@ -217,7 +218,7 @@ public class WordLadderGameGUI {
                 long memorySebelum = runtime.totalMemory() - runtime.freeMemory();
 
                 Time startTime = new Time(System.currentTimeMillis());
-                Pair<ArrayList<String>, Integer> result = algorithm.Evaluate(data);
+                AbstractMap.SimpleEntry<ArrayList<String>, Integer> result = algorithm.Evaluate(data);
 
                 long memorySesudah = runtime.totalMemory() - runtime.freeMemory();
 

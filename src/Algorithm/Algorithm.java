@@ -2,11 +2,11 @@ package Algorithm;
 
 import DataStructure.Node;
 import java.util.PriorityQueue;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javafx.util.Pair;
 
 public class Algorithm {
 
@@ -90,7 +90,7 @@ public class Algorithm {
     // Method untuk mengevaluasi path dari startWord ke endWord
     // Parameter maps merupakan mapping antara kata dengan tetangganya (kata valid
     // yang bisa dicapai dengan menggani salah satu huruf)
-    public Pair<ArrayList<String>, Integer> Evaluate(Map<String, List<String>> maps) {
+    public AbstractMap.SimpleEntry<ArrayList<String>, Integer> Evaluate(Map<String, List<String>> maps) {
 
         // Priority queue untuk menyimpan node yang akan diekspan, compareByCost
         // membandingkan cost dari node
@@ -126,7 +126,7 @@ public class Algorithm {
             // dikunjungi
             if (current.getValue().equals(endWord)) {
 
-                return new Pair<>(getPaths(), counter);
+                return new AbstractMap.SimpleEntry<>(getPaths(), counter);
             }
 
             // masukkan ke visitedMap
@@ -166,7 +166,7 @@ public class Algorithm {
         // Jika tidak ada path yang ditemukan, maka return empty path dan jumlah node
         // yang dikunjungi
         System.out.println("No path found");
-        return new Pair<>(new ArrayList<>(), counter);
+        return new AbstractMap.SimpleEntry<>(new ArrayList<>(), counter);
     }
 
 }
